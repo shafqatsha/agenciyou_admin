@@ -1,9 +1,26 @@
 import AppLayout from '@/layouts/app-layout';
 import React from 'react';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 
+interface Battery {
+    id: number;
+    model: string;
+    brand: string;
+    capacity_kwh: number;
+    is_enabled: boolean;
+    sale_price: number;
+}
+
+interface PageProps {
+    batteries: {
+        data: Battery[];
+    };
+    [key: string]: any;
+}
 
 const BatteriesListPage: React.FC = () => {
+    const { batteries } = usePage<PageProps>().props;
+
     return (
         <AppLayout>
             <main className="flex-1">
@@ -32,7 +49,6 @@ const BatteriesListPage: React.FC = () => {
                                         <input
                                             className="form-input flex h-full w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg rounded-l-none border border-l-0 border-border-light bg-background-light px-4 pl-2 text-sm leading-normal font-normal text-text-main placeholder:text-text-secondary focus:ring-2 focus:ring-primary/50 focus:outline-none dark:border-border-dark dark:bg-background-dark dark:text-gray-200"
                                             placeholder="Search by model, brand..."
-                                            value=""
                                         />
                                     </div>
                                 </label>
@@ -50,7 +66,7 @@ const BatteriesListPage: React.FC = () => {
                             <table className="w-full text-left text-sm text-text-secondary">
                                 <thead className="bg-background-light text-xs text-text-secondary uppercase dark:bg-background-dark">
                                     <tr>
-                                        <th className="p-4" scope="col">
+                                        {/* <th className="p-4" scope="col">
                                             <div className="flex items-center">
                                                 <input
                                                     className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary focus:ring-2 focus:ring-primary dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary"
@@ -61,7 +77,7 @@ const BatteriesListPage: React.FC = () => {
                                                     checkbox
                                                 </label>
                                             </div>
-                                        </th>
+                                        </th> */}
                                         <th className="px-6 py-3" scope="col">
                                             Battery Model
                                         </th>
@@ -83,178 +99,92 @@ const BatteriesListPage: React.FC = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr className="border-b bg-surface-light hover:bg-gray-50 dark:border-border-dark dark:bg-surface-dark dark:hover:bg-gray-800/50">
-                                        <td className="w-4 p-4">
-                                            <div className="flex items-center">
-                                                <input
-                                                    className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary focus:ring-2 focus:ring-primary dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary"
-                                                    id="checkbox-table-1"
-                                                    type="checkbox"
-                                                />
-                                                <label className="sr-only" htmlFor="checkbox-table-1">
-                                                    checkbox
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-4 font-medium whitespace-nowrap text-text-main dark:text-white">PowerWall X</td>
-                                        <td className="px-6 py-4">ElectroCharge</td>
-                                        <td className="px-6 py-4">13.5</td>
-                                        <td className="px-6 py-4">
-                                            <div className="flex items-center">
-                                                <span className="bg-success/10 text-success inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium">
-                                                    <span className="bg-success inline-block size-1.5 rounded-full"></span>Active
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-4">6,500.00</td>
-                                        <td className="px-6 py-4">
-                                            <div className="flex items-center gap-1">
-                                                <Link href={`/batteries/1`} className="p-2 text-text-secondary transition-colors hover:text-primary" title="View Details">
-                                                    <span className="material-symbols-outlined">visibility</span>
-                                                </Link>
-                                                <button className="p-2 text-text-secondary transition-colors hover:text-primary" title="Edit Battery">
-                                                    <span className="material-symbols-outlined">edit</span>
-                                                </button>
-                                                <button
-                                                    className="p-2 text-text-secondary transition-colors hover:text-red-500"
-                                                    title="Delete Battery"
-                                                >
-                                                    <span className="material-symbols-outlined">delete</span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr className="border-b bg-surface-light hover:bg-gray-50 dark:border-border-dark dark:bg-surface-dark dark:hover:bg-gray-800/50">
-                                        <td className="w-4 p-4">
-                                            <div className="flex items-center">
-                                                <input
-                                                    className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary focus:ring-2 focus:ring-primary dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary"
-                                                    id="checkbox-table-2"
-                                                    type="checkbox"
-                                                />
-                                                <label className="sr-only" htmlFor="checkbox-table-2">
-                                                    checkbox
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-4 font-medium whitespace-nowrap text-text-main dark:text-white">HomeBattery 2</td>
-                                        <td className="px-6 py-4">SunPower</td>
-                                        <td className="px-6 py-4">10.0</td>
-                                        <td className="px-6 py-4">
-                                            <div className="flex items-center">
-                                                <span className="bg-success/10 text-success inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium">
-                                                    <span className="bg-success inline-block size-1.5 rounded-full"></span>Active
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-4">5,200.00</td>
-                                        <td className="px-6 py-4">
-                                            <div className="flex items-center gap-1">
-                                                <button className="p-2 text-text-secondary transition-colors hover:text-primary" title="View Details">
-                                                    <span className="material-symbols-outlined">visibility</span>
-                                                </button>
-                                                <button className="p-2 text-text-secondary transition-colors hover:text-primary" title="Edit Battery">
-                                                    <span className="material-symbols-outlined">edit</span>
-                                                </button>
-                                                <button
-                                                    className="p-2 text-text-secondary transition-colors hover:text-red-500"
-                                                    title="Delete Battery"
-                                                >
-                                                    <span className="material-symbols-outlined">delete</span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr className="border-b bg-surface-light hover:bg-gray-50 dark:border-border-dark dark:bg-surface-dark dark:hover:bg-gray-800/50">
-                                        <td className="w-4 p-4">
-                                            <div className="flex items-center">
-                                                <input
-                                                    className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary focus:ring-2 focus:ring-primary dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary"
-                                                    id="checkbox-table-3"
-                                                    type="checkbox"
-                                                />
-                                                <label className="sr-only" htmlFor="checkbox-table-3">
-                                                    checkbox
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-4 font-medium whitespace-nowrap text-text-main dark:text-white">EnergyBank Pro</td>
-                                        <td className="px-6 py-4">Volt-Storage</td>
-                                        <td className="px-6 py-4">15.2</td>
-                                        <td className="px-6 py-4">
-                                            <div className="flex items-center">
-                                                <span className="inline-flex items-center gap-1.5 rounded-full bg-red-500/10 px-2.5 py-1 text-xs font-medium text-red-500">
-                                                    <span className="inline-block size-1.5 rounded-full bg-red-500"></span>Inactive
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-4">7,800.00</td>
-                                        <td className="px-6 py-4">
-                                            <div className="flex items-center gap-1">
-                                                <button className="p-2 text-text-secondary transition-colors hover:text-primary" title="View Details">
-                                                    <span className="material-symbols-outlined">visibility</span>
-                                                </button>
-                                                <button className="p-2 text-text-secondary transition-colors hover:text-primary" title="Edit Battery">
-                                                    <span className="material-symbols-outlined">edit</span>
-                                                </button>
-                                                <button
-                                                    className="p-2 text-text-secondary transition-colors hover:text-red-500"
-                                                    title="Delete Battery"
-                                                >
-                                                    <span className="material-symbols-outlined">delete</span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr className="border-b bg-surface-light hover:bg-gray-50 dark:border-border-dark dark:bg-surface-dark dark:hover:bg-gray-800/50">
-                                        <td className="w-4 p-4">
-                                            <div className="flex items-center">
-                                                <input
-                                                    className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary focus:ring-2 focus:ring-primary dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary"
-                                                    id="checkbox-table-4"
-                                                    type="checkbox"
-                                                />
-                                                <label className="sr-only" htmlFor="checkbox-table-4">
-                                                    checkbox
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-4 font-medium whitespace-nowrap text-text-main dark:text-white">EcoStore 5</td>
-                                        <td className="px-6 py-4">GreenEnergy</td>
-                                        <td className="px-6 py-4">5.0</td>
-                                        <td className="px-6 py-4">
-                                            <div className="flex items-center">
-                                                <span className="bg-success/10 text-success inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium">
-                                                    <span className="bg-success inline-block size-1.5 rounded-full"></span>Active
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-4">3,100.00</td>
-                                        <td className="px-6 py-4">
-                                            <div className="flex items-center gap-1">
-                                                <button className="p-2 text-text-secondary transition-colors hover:text-primary" title="View Details">
-                                                    <span className="material-symbols-outlined">visibility</span>
-                                                </button>
-                                                <button className="p-2 text-text-secondary transition-colors hover:text-primary" title="Edit Battery">
-                                                    <span className="material-symbols-outlined">edit</span>
-                                                </button>
-                                                <button
-                                                    className="p-2 text-text-secondary transition-colors hover:text-red-500"
-                                                    title="Delete Battery"
-                                                >
-                                                    <span className="material-symbols-outlined">delete</span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    {batteries.data.length > 0 ? (
+                                        batteries.data.map((battery) => (
+                                            <tr
+                                                key={battery.id}
+                                                className="border-b bg-surface-light hover:bg-gray-50 dark:border-border-dark dark:bg-surface-dark dark:hover:bg-gray-800/50"
+                                            >
+                                                {/* <td className="w-4 p-4">
+                                                    <div className="flex items-center">
+                                                        <input
+                                                            className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary focus:ring-2 focus:ring-primary dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary"
+                                                            id={`checkbox-table-${battery.id}`}
+                                                            type="checkbox"
+                                                        />
+                                                        <label className="sr-only" htmlFor={`checkbox-table-${battery.id}`}>
+                                                            checkbox
+                                                        </label>
+                                                    </div>
+                                                </td> */}
+                                                <td className="px-6 py-4 font-medium whitespace-nowrap text-text-main dark:text-white">
+                                                    {battery.model}
+                                                </td>
+                                                <td className="px-6 py-4">{battery.brand}</td>
+                                                <td className="px-6 py-4">{battery.capacity_kwh}</td>
+                                                <td className="px-6 py-4">
+                                                    <div className="flex items-center">
+                                                        <span
+                                                            className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${
+                                                                battery.is_enabled
+                                                                    ? 'bg-success/10 text-success'
+                                                                    : 'bg-red-500/10 text-red-500'
+                                                            }`}
+                                                        >
+                                                            <span
+                                                                className={`inline-block size-1.5 rounded-full ${
+                                                                    battery.is_enabled
+                                                                        ? 'bg-success'
+                                                                        : 'bg-red-500'
+                                                                }`}
+                                                            ></span>
+                                                            {battery.is_enabled ? 'Active' : 'Inactive'}
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td className="px-6 py-4">{battery.sale_price}</td>
+                                                <td className="px-6 py-4">
+                                                    <div className="flex items-center gap-1">
+                                                        <Link
+                                                            href={`/batteries/${battery.id}`}
+                                                            className="p-2 text-text-secondary transition-colors hover:text-primary"
+                                                            title="View Details"
+                                                        >
+                                                            <span className="material-symbols-outlined">visibility</span>
+                                                        </Link>
+                                                        <button
+                                                            className="p-2 text-text-secondary transition-colors hover:text-primary"
+                                                            title="Edit Battery"
+                                                        >
+                                                            <span className="material-symbols-outlined">edit</span>
+                                                        </button>
+                                                        <button
+                                                            className="p-2 text-text-secondary transition-colors hover:text-red-500"
+                                                            title="Delete Battery"
+                                                        >
+                                                            <span className="material-symbols-outlined">delete</span>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))
+                                    ) : (
+                                        <tr>
+                                            <td colSpan={7} className="px-6 py-4 text-center text-text-secondary">
+                                                No batteries found.
+                                            </td>
+                                        </tr>
+                                    )}
                                 </tbody>
                             </table>
                         </div>
+                        {/* Pagination Logic can be added here based on meta from API resource */}
                         <nav aria-label="Table navigation" className="flex items-center justify-between p-4">
                             <span className="text-sm font-normal text-text-secondary">
-                                Showing <span className="font-semibold text-text-main dark:text-white">1-4</span> of{' '}
-                                <span className="font-semibold text-text-main dark:text-white">32</span>
+                                Showing <span className="font-semibold text-text-main dark:text-white">1-{batteries.data.length}</span> of{' '}
+                                <span className="font-semibold text-text-main dark:text-white">{batteries.data.length}</span>
                             </span>
+                            {/* Pagination links placeholders - implementing real pagination would require meta links from backend */}
                             <ul className="inline-flex items-center -space-x-px">
                                 <li>
                                     <a
@@ -271,22 +201,6 @@ const BatteriesListPage: React.FC = () => {
                                         href="#"
                                     >
                                         1
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        className="flex h-8 items-center border border-border-light bg-surface-light px-3 leading-tight text-text-secondary hover:bg-gray-100 hover:text-text-main dark:border-border-dark dark:bg-surface-dark dark:hover:bg-gray-700 dark:hover:text-white"
-                                        href="#"
-                                    >
-                                        2
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        className="flex h-8 items-center border border-border-light bg-surface-light px-3 leading-tight text-text-secondary hover:bg-gray-100 hover:text-text-main dark:border-border-dark dark:bg-surface-dark dark:hover:bg-gray-700 dark:hover:text-white"
-                                        href="#"
-                                    >
-                                        3
                                     </a>
                                 </li>
                                 <li>

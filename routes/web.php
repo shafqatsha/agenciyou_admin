@@ -19,9 +19,6 @@ Route::get('/partners', function () {
 Route::get('/partners/{id}', function () {
     return Inertia::render('partners-detail');
 })->name('partners.detail');
-Route::get('/batteries', function () {
-    return Inertia::render('batteries');
-})->name('batteries');
 
 Route::get('login' , function() {
     return Inertia::render('auth/login');
@@ -30,9 +27,6 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 // Route::middleware(['auth'])->group(function () {
 
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
 
     Route::get('batteries', [BatteryController::class, 'index'])->name('batteries.index');
     Route::get('batteries/create' , function() {

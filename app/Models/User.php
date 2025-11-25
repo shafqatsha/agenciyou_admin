@@ -65,10 +65,10 @@ class User extends Model implements HasMedia
     }
 
 
-    public function profile()
-    {
-        return $this->hasOne(UserProfile::class);
-    }
+    // public function profile()
+    // {
+    //     return $this->hasOne(UserProfile::class);
+    // }
 
     public function hasActiveSubscription(): bool
     {

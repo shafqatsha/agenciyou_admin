@@ -1,7 +1,28 @@
 import React, { useState } from 'react';
+import { useForm } from '@inertiajs/react';
 
 const LoginPage: React.FC = () => {
     const [showPassword, setShowPassword] = useState(false);
+
+    const { data, setData, post, processing, errors } = useForm({
+        email: '',
+        password: '',
+    });
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        post('/login', {
+            onError: (errors) => {
+                if (errors.email) {
+                    console.log (errors.email);
+                } else if (errors.password) {
+                    console.log(errors.password);
+                } else {
+                    console.log('Login failed. Please check your credentials.');
+                }
+            }
+        });
+    };
 
     return (
         <div
@@ -26,7 +47,7 @@ const LoginPage: React.FC = () => {
                                     </p>
                                 </div>
 
-                                <div className="mt-6 flex flex-col gap-4">
+                                <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
                                     {/* Email */}
                                     <label className="flex w-full flex-col">
                                         <p className="pb-2 text-sm font-medium leading-normal text-[#111827] dark:text-gray-100">
@@ -35,6 +56,8 @@ const LoginPage: React.FC = () => {
                                         <div className="flex w-full items-stretch rounded-lg border border-[#dbe6e3] bg-white text-sm dark:border-zinc-700 dark:bg-zinc-800">
                                             <input
                                                 type="email"
+                                                value={data.email}
+                                                onChange={(e) => setData('email', e.target.value)}
                                                 className="form-input flex h-12 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg border-none bg-transparent p-[15px] pr-2 text-sm font-normal leading-normal text-[#111827] placeholder:text-[#6B7280] focus:outline-0 focus:ring-2 focus:ring-primary/50 dark:text-gray-100"
                                                 placeholder="Enter your email"
                                             />
@@ -50,6 +73,8 @@ const LoginPage: React.FC = () => {
                                         <div className="flex w-full items-stretch rounded-lg border border-[#dbe6e3] bg-white text-sm dark:border-zinc-700 dark:bg-zinc-800">
                                             <input
                                                 type={showPassword ? 'text' : 'password'}
+                                                value={data.password}
+                                                onChange={(e) => setData('password', e.target.value)}
                                                 className="form-input flex h-12 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-l-lg border-none bg-transparent p-[15px] pr-2 text-sm font-normal leading-normal text-[#111827] placeholder:text-[#6B7280] focus:outline-0 focus:ring-2 focus:ring-primary/50 dark:text-gray-100"
                                                 placeholder="Enter your password"
                                             />
@@ -63,21 +88,31 @@ const LoginPage: React.FC = () => {
                                                 </span>
                                             </button>
                                         </div>
+                                        {/* Show email error here too if it's a credential mismatch, or just password error */}
+                                        {(errors.password || errors.email) && (
+                                            <p className="mt-1 text-sm text-red-500">
+                                                {errors.password || errors.email}
+                                            </p>
+                                        )}
                                     </label>
-                                </div>
 
-                                <div className="mt-4 flex justify-end">
-                                    <a
-                                        className="text-sm font-medium text-primary hover:underline"
-                                        href="#"
+                                    <div className="mt-4 flex justify-end">
+                                        <a
+                                            className="text-sm font-medium text-primary hover:underline"
+                                            href="#"
+                                        >
+                                            Forgot Password?
+                                        </a>
+                                    </div>
+
+                                    <button
+                                        type="submit"
+                                        disabled={processing}
+                                        className="mt-6 w-full rounded-lg bg-primary px-6 py-3 text-base font-bold text-background-dark transition-opacity hover:opacity-90 disabled:opacity-50"
                                     >
-                                        Forgot Password?
-                                    </a>
-                                </div>
-
-                                <button className="mt-6 w-full rounded-lg bg-primary px-6 py-3 text-base font-bold text-background-dark transition-opacity hover:opacity-90">
-                                    Login
-                                </button>
+                                        {processing ? 'Logging in...' : 'Login'}
+                                    </button>
+                                </form>
                             </div>
 
                             {/* Right: Illustration */}

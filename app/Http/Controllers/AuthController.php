@@ -14,12 +14,19 @@ class AuthController extends Controller
     public function __construct(LoginAction $loginAction)
     {
         $this->loginAction = $loginAction;
-    }   
+    }
 
     public function login(LoginRequest $request)
     {
-        $this->loginAction->login($request->validated());
-        return redirect()->route('dashboard');
+        if (!$this->loginAction->login($request->validated())) {
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ])->onlyInput('email');
+        }
+
+        $request->session()->regenerate();
+
+        return redirect()->route('home');
     }
 
 }
