@@ -14,7 +14,7 @@ class AuthController extends Controller
     public function __construct(LoginAction $loginAction)
     {
         $this->loginAction = $loginAction;
-    }   
+    }
 
     public function login(LoginRequest $request)
     {

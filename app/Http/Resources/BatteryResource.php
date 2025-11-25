@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\Partner;
+namespace App\Http\Resources;
 
 use App\Http\Resources\MediaResource;
 use Illuminate\Http\Request;
@@ -75,9 +75,9 @@ class BatteryResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'materials' => $this->materials,
-            'image' => $this->getFirstMedia('image')
-            ? _getSignedUrl($this->getFirstMedia('image')->getPath())
-            : null,
+            // 'image' => $this->getFirstMedia('image')
+            // ? _getSignedUrl($this->getFirstMedia('image')->getPath())
+            // : null,
         ];
     }
 }

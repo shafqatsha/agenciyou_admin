@@ -19,9 +19,6 @@ Route::get('/partners', function () {
 Route::get('/partners/{id}', function () {
     return Inertia::render('partners-detail');
 })->name('partners.detail');
-Route::get('/batteries', function () {
-    return Inertia::render('batteries');
-})->name('batteries');
 
 Route::get('login' , function() {
     return Inertia::render('auth/login');
