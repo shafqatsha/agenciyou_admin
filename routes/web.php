@@ -16,6 +16,12 @@ Route::get('/partners', function () {
     return Inertia::render('partners');
 })->name('partners');
 
+Route::get('/partners/{id}', function () {
+    return Inertia::render('partners-detail');
+})->name('partners.detail');
+Route::get('/batteries', function () {
+    return Inertia::render('batteries');
+})->name('batteries');
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
