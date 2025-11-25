@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BatteryController;
+use App\Http\Controllers\PaymentController;
+use App\Models\Battery;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -21,5 +24,10 @@ Route::middleware(['auth'])->group(function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    // Route::get('battery')
+    Route::get('batteries', [BatteryController::class, 'index'])->name('batteries.index');
+    Route::post('/batteries', [BatteryController::class, 'store'])->name('batteries.store');
+    Route::get('/batteries/{battery}', [BatteryController::class, 'show'])->name('batteries.show');
+    Route::put('/batteries/{battery}', [BatteryController::class, 'update'])->name('batteries.update');
+
+    Route::put('/payment/{payment}', [PaymentController::class, 'verifiedPayment'])->name('payment.verfied');
 });

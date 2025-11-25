@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\BatteryAction;
 use App\Http\Requests\Battery\StoreBatteryRequest;
 use App\Http\Requests\Battery\UpdateBatteryRequest;
+use App\Http\Resources\BatteryResource;
 use App\Queries\BatteryQuery;
 use Illuminate\Http\Request;
 use App\Models\Battery;
@@ -26,7 +27,10 @@ class BatteryController extends Controller
     public function index()
     {
         $batteries = $this->batteryQuery->getAll();
-        return inertia('Battery/Index', compact('batteries'));
+        
+        return inertia('Battery/Index', [
+            'batteries' => BatteryResource::collection($batteries),
+        ]);
     }
 
     /**
@@ -52,7 +56,9 @@ class BatteryController extends Controller
     public function edit(Battery $id)
     {
         $battery = $this->batteryQuery->findById($id);
-        return inertia('Battery/Edit', compact('battery'));
+        return inertia('Battery/Edit', [
+            'battery' => BatteryResource::make($battery),
+        ]);
     }
 
     /**
