@@ -1,5 +1,7 @@
 import AppLayout from '@/layouts/app-layout';
 import { Head } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
+
 export default function Welcome() {
     return (
         <AppLayout>
@@ -48,14 +50,18 @@ export default function Welcome() {
                         <div className="flex items-center justify-between rounded-lg bg-gray-50 p-4 dark:bg-gray-800/50">
                             <div className="flex items-center gap-3">
                                 <span className="material-symbols-outlined text-2xl text-primary">inventory_2</span>
-                                <span className="font-medium">View All Batteries</span>
+                                <Link href="/batteries" className="font-medium hover:underline">
+                                    View All Batteries
+                                </Link>
                             </div>
                             <span className="material-symbols-outlined text-gray-500">arrow_forward_ios</span>
                         </div>
                         <div className="flex items-center justify-between rounded-lg bg-gray-50 p-4 dark:bg-gray-800/50">
                             <div className="flex items-center gap-3">
                                 <span className="material-symbols-outlined text-2xl text-primary">add_circle</span>
-                                <span className="font-medium">Add New Battery</span>
+                                <Link href="/batteries/create" className="font-medium hover:underline">
+                                    Add New Battery
+                                </Link>
                             </div>
                             <span className="material-symbols-outlined text-gray-500">arrow_forward_ios</span>
                         </div>
@@ -70,7 +76,9 @@ export default function Welcome() {
                         <div className="flex items-center justify-between rounded-lg bg-gray-50 p-4 dark:bg-gray-800/50">
                             <div className="flex items-center gap-3">
                                 <span className="material-symbols-outlined text-2xl text-primary">group</span>
-                                <span className="font-medium">View All Partners</span>
+                                <Link href="/partners" className="font-medium hover:underline">
+                                    View All Partners
+                                </Link>
                             </div>
                             <span className="material-symbols-outlined text-gray-500">arrow_forward_ios</span>
                         </div>
