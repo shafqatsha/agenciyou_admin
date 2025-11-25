@@ -12,12 +12,6 @@ Route::get('/partners', function () {
     return Inertia::render('partners');
 })->name('partners');
 
-<<<<<<< Updated upstream
-Route::get('/partners/{id}', function () {
-    return Inertia::render('partners-detail');
-})->name('partners.detail');
-=======
->>>>>>> Stashed changes
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
@@ -28,8 +22,4 @@ Route::middleware(['auth'])->group(function () {
     })->name('dashboard');
 
     // Route::get('battery')
-<<<<<<< Updated upstream
 });
-=======
-});
->>>>>>> Stashed changes
