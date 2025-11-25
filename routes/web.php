@@ -29,5 +29,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/batteries/{battery}', [BatteryController::class, 'show'])->name('batteries.show');
     Route::put('/batteries/{battery}', [BatteryController::class, 'update'])->name('batteries.update');
 
-    Route::put('/payment/{payment}', [PaymentController::class, 'verifiedPayment'])->name('payment.verfied');
+    Route::put('/payment/{user}', [PaymentController::class, 'verifiedPayment'])->name('payment.verfied');
 });
