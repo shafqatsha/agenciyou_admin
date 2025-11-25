@@ -30,9 +30,6 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 // Route::middleware(['auth'])->group(function () {
 
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
 
     Route::get('batteries', [BatteryController::class, 'index'])->name('batteries.index');
     Route::get('batteries/create' , function() {
