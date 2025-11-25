@@ -14,6 +14,16 @@ Route::get('/partners', function () {
 Route::get('/partners/{id}', function () {
     return Inertia::render('partners-detail');
 })->name('partners.detail');
-Route::get('/batteries', function () {
-    return Inertia::render('batteries');
-})->name('batteries');
+
+
+Route::get('/batteries/index', function () {
+    return Inertia::render('batteries/index');
+})->name('batteries.list');
+
+Route::get('/batteries/create', function () {
+    return Inertia::render('batteries/create');
+})->name('batteries.create');
+
+Route::get('/batteries/{id}', function ($id) {
+    return Inertia::render('batteries/detail', ['id' => $id]);
+})->name('batteries.detail');
