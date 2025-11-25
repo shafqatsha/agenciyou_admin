@@ -35,14 +35,14 @@ Route::get('login' , function() {
     })->name('dashboard');
 
     Route::get('batteries', [BatteryController::class, 'index'])->name('batteries.index');
+    Route::get('batteries/create' , function() {
+        return Inertia::render('batteries/create');
+    });
     Route::post('/batteries', [BatteryController::class, 'store'])->name('batteries.store');
-    Route::get('/batteries/{battery}', [App\Http\Controllers\BatteryController::class, 'show'])->name('batteries.show');
+    Route::get('/batteries/{battery}', [BatteryController::class, 'show'])->name('batteries.show');
     Route::put('/batteries/{battery}', [BatteryController::class, 'update'])->name('batteries.update');
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::put('/payment/{user}', [PaymentController::class, 'verifiedPayment'])->name('payment.verfied');
 // });
 
-Route::get('batteries/create' , function() {
-    return Inertia::render('batteries/create');
-});
