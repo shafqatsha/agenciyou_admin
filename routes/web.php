@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BatteryController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\UserController;
 use App\Models\Battery;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,5 +30,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/batteries/{battery}', [BatteryController::class, 'show'])->name('batteries.show');
     Route::put('/batteries/{battery}', [BatteryController::class, 'update'])->name('batteries.update');
 
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::put('/payment/{user}', [PaymentController::class, 'verifiedPayment'])->name('payment.verfied');
 });
