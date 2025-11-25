@@ -1,4 +1,5 @@
 import AppLayout from '@/layouts/app-layout';
+import { Link } from '@inertiajs/react';
 export default function Partners() {
     return (
         <AppLayout>
@@ -107,14 +108,20 @@ export default function Partners() {
                                     <td className="px-6 py-4">2024-05-20</td>
                                     <td className="px-6 py-4">
                                         <div className="flex items-center gap-1">
-                                            <button className="text-text-secondary p-2 transition-colors hover:text-primary" title="View Details">
+                                            <Link href="/partners/1" className="text-text-secondary p-2 transition-colors hover:text-primary" title="View Details">
                                                 <span className="material-symbols-outlined">visibility</span>
-                                            </button>
-                                            <button className="text-text-secondary p-2 transition-colors hover:text-primary" title="Edit User">
-                                                <span className="material-symbols-outlined">edit</span>
-                                            </button>
+                                            </Link>
                                             <button className="text-text-secondary p-2 transition-colors hover:text-red-500" title="Delete User">
                                                 <span className="material-symbols-outlined">delete</span>
+                                            </button>
+                                            <button
+                                                className="text-text-secondary p-2 transition-colors hover:text-primary"
+                                                title="Update Status"
+                                                onClick={() => {
+                                                    // TODO: Call API to update user status
+                                                }}
+                                            >
+                                                <span className="material-symbols-outlined">check</span>
                                             </button>
                                         </div>
                                     </td>
@@ -154,14 +161,20 @@ export default function Partners() {
                                     <td className="px-6 py-4">2024-03-11</td>
                                     <td className="px-6 py-4">
                                         <div className="flex items-center gap-1">
-                                            <button className="text-text-secondary p-2 transition-colors hover:text-primary" title="View Details">
+                                            <Link href="/partners/1" className="text-text-secondary p-2 transition-colors hover:text-primary" title="View Details">
                                                 <span className="material-symbols-outlined">visibility</span>
-                                            </button>
-                                            <button className="text-text-secondary p-2 transition-colors hover:text-primary" title="Edit User">
-                                                <span className="material-symbols-outlined">edit</span>
-                                            </button>
+                                            </Link>
                                             <button className="text-text-secondary p-2 transition-colors hover:text-red-500" title="Delete User">
                                                 <span className="material-symbols-outlined">delete</span>
+                                            </button>
+                                            <button
+                                                className="text-text-secondary p-2 transition-colors hover:text-primary"
+                                                title="Update Status"
+                                                onClick={() => {
+                                                    // TODO: Call API to update user status
+                                                }}
+                                            >
+                                                <span className="material-symbols-outlined">check</span>
                                             </button>
                                         </div>
                                     </td>
@@ -201,14 +214,20 @@ export default function Partners() {
                                     <td className="px-6 py-4">2024-05-21</td>
                                     <td className="px-6 py-4">
                                         <div className="flex items-center gap-1">
-                                            <button className="text-text-secondary p-2 transition-colors hover:text-primary" title="View Details">
+                                            <Link href="/partners/1" className="text-text-secondary p-2 transition-colors hover:text-primary" title="View Details">
                                                 <span className="material-symbols-outlined">visibility</span>
-                                            </button>
-                                            <button className="text-text-secondary p-2 transition-colors hover:text-primary" title="Edit User">
-                                                <span className="material-symbols-outlined">edit</span>
-                                            </button>
+                                            </Link>
                                             <button className="text-text-secondary p-2 transition-colors hover:text-red-500" title="Delete User">
                                                 <span className="material-symbols-outlined">delete</span>
+                                            </button>
+                                            <button
+                                                className="text-text-secondary p-2 transition-colors hover:text-primary"
+                                                title="Update Status"
+                                                onClick={() => {
+                                                    // TODO: Call API to update user status
+                                                }}
+                                            >
+                                                <span className="material-symbols-outlined">check</span>
                                             </button>
                                         </div>
                                     </td>

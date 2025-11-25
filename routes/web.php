@@ -10,3 +10,7 @@ Route::get('/', function () {
 Route::get('/partners', function () {
     return Inertia::render('partners');
 })->name('partners');
+
+Route::get('/partners/{id}', function () {
+    return Inertia::render('partners-detail');
+})->name('partners.detail');
