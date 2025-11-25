@@ -12,9 +12,7 @@ Route::get('/', function () {
     return Inertia::render('welcome');
 })->name('home');
 
-Route::get('/partners', function () {
-    return Inertia::render('partners');
-})->name('partners');
+
 
 Route::get('/partners/{id}', function () {
     return Inertia::render('partners-detail');
@@ -37,7 +35,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/batteries/{battery}', [BatteryController::class, 'show'])->name('batteries.show');
     Route::put('/batteries/{battery}', [BatteryController::class, 'update'])->name('batteries.update');
 
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/partners', [UserController::class, 'index'])->name('users.index');
     Route::put('/payment/{user}', [PaymentController::class, 'verifiedPayment'])->name('payment.verfied');
 // });
 
