@@ -2,6 +2,7 @@
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Admin;
 use App\Models\Store;
 use App\Models\Folder;
 use App\Models\MediaLink;
@@ -22,7 +23,7 @@ use Spatie\Permission\PermissionRegistrar;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 
-function _user(): ?User
+function _user(): ?Admin
 {
     return request()->user();
 }

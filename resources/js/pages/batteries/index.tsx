@@ -13,13 +13,13 @@ const BatteriesListPage: React.FC = () => {
                             <h1 className="text-3xl leading-tight font-bold text-heading dark:text-gray-100">Battery Management</h1>
                             <p className="text-base leading-normal font-normal text-text-secondary">Manage all battery products in the inventory.</p>
                         </div>
-                        <a
+                        <Link
                             href="/batteries/create"
                             className="shadow-soft flex h-11 min-w-[84px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg bg-primary px-5 text-sm leading-normal font-bold tracking-wide text-white transition-colors hover:bg-primary/90"
                         >
                             <span className="material-symbols-outlined">add</span>
                             Add New Battery
-                        </a>
+                        </Link>
                     </div>
                     <div className="shadow-soft mb-6 rounded-lg bg-surface-light p-4 dark:bg-surface-dark">
                         <div className="flex flex-col gap-4 md:flex-row">
