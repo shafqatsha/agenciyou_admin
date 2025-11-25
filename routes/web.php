@@ -23,7 +23,10 @@ Route::get('/batteries', function () {
     return Inertia::render('batteries');
 })->name('batteries');
 
-Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::get('login' , function() {
+    return Inertia::render('auth/login');
+});
+// Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 // Route::middleware(['auth'])->group(function () {
 

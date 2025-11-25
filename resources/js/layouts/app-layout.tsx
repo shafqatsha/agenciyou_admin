@@ -176,7 +176,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
 
                     {/* Right Actions */}
                     <div className="flex items-center gap-4">
-                        <button className="flex h-10 min-w-[84px] items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-[#10221d] hover:opacity-90">
+                        {/* <button className="flex h-10 min-w-[84px] items-center justify-center rounded-lg bg-primary px-4 text-sm font-bold text-[#10221d] hover:opacity-90">
                             Add New
                         </button>
 
@@ -184,7 +184,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
                             <span className="material-symbols-outlined text-xl">
                                 notifications
                             </span>
-                        </button>
+                        </button> */}
 
                         <button className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full">
                             <img
