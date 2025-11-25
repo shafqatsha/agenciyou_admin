@@ -22,4 +22,8 @@ Route::middleware(['auth'])->group(function () {
     })->name('dashboard');
 
     // Route::get('battery')
+<<<<<<< Updated upstream
 });
+=======
+});
+>>>>>>> Stashed changes
