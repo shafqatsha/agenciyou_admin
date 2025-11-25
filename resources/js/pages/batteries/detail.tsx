@@ -1,6 +1,7 @@
 import AppLayout from '@/layouts/app-layout';
 import { usePage } from '@inertiajs/react';
 import React from 'react';
+import { Link } from '@inertiajs/react';
 
 type PageProps = {
     id?: string | number;
@@ -14,13 +15,13 @@ const BatteryDetailPage: React.FC = () => {
             <div className="max-w-7xl mx-auto">
                 <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
                     <div className="flex flex-col gap-1">
-                        <a
+                        <Link
                             className="mb-2 flex items-center gap-2 text-sm text-text-secondary transition-colors hover:text-primary"
-                            href="#"
+                            href="/batteries"
                         >
                             <span className="material-symbols-outlined">arrow_back</span>
                             Back to Battery List
-                        </a>
+                        </Link>
 
                         <h1 className="text-heading dark:text-gray-100 text-3xl font-bold leading-tight">
                             PowerWall X {id ? `(ID: ${id})` : ''}

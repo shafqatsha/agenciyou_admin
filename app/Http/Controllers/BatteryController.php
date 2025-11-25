@@ -68,4 +68,15 @@ class BatteryController extends Controller
         $this->batteryAction->update($id, $request->validated());
         return redirect()->route('batteries.index');
     }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Battery $battery)
+    {
+        return inertia('batteries/detail', [
+            'id' => $battery->id,
+            // Optionally add more battery info as needed for detail.tsx
+        ]);
+    }
 }

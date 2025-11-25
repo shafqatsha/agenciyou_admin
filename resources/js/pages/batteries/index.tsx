@@ -109,9 +109,9 @@ const BatteriesListPage: React.FC = () => {
                                         <td className="px-6 py-4">6,500.00</td>
                                         <td className="px-6 py-4">
                                             <div className="flex items-center gap-1">
-                                                <a href="/batteries/1" className="p-2 text-text-secondary transition-colors hover:text-primary" title="View Details">
+                                                <Link href={`/batteries/1`} className="p-2 text-text-secondary transition-colors hover:text-primary" title="View Details">
                                                     <span className="material-symbols-outlined">visibility</span>
-                                                </a>
+                                                </Link>
                                                 <button className="p-2 text-text-secondary transition-colors hover:text-primary" title="Edit Battery">
                                                     <span className="material-symbols-outlined">edit</span>
                                                 </button>
