@@ -11,3 +11,15 @@ Route::get('/', function () {
 Route::get('/partners', function () {
     return Inertia::render('partners');
 })->name('partners');
+
+
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+
+    // Route::get('battery')
+});
