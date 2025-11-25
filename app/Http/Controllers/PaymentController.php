@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Payment\PaymentAction;
+use App\Http\Requests\PaymentStatusRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -16,9 +17,10 @@ class PaymentController extends Controller
         $this->action = $action;
     }
 
-    public function verifiedPayment(User $user)
+    public function verifiedPayment(User $user, PaymentStatusRequest $request)
     {
-        $user =  $this->action->verified($user);
+        $status = $request->validated();
+        $user =  $this->action->verified($user, $status);
         return _successResponse(UserResource::make($user), 'Payment updated successfully', 200);
         
     }
