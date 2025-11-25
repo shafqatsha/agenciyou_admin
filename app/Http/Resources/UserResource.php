@@ -19,7 +19,13 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'payment_status' => $this->payment_status,
-            'profile'=> UserProfileResource::make($this->whenLoaded('profile')),
+            'profile' => UserProfileResource::make($this->whenLoaded('profile')),
+            'dp' => $this->getFirstMedia('dp')
+                ? _getSignedUrl($this->getFirstMedia('dp')->getPath())
+                : null,
+            'payment_receipt' => $this->getFirstMedia('payment_receipt')
+                ? _getSignedUrl($this->getFirstMedia('payment_receipt')->getPath())
+                : null,
         ];
     }
 }
