@@ -53,9 +53,8 @@ class BatteryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Battery $id)
+    public function edit(Battery $battery)
     {
-        $battery = $this->batteryQuery->findById($id);
         return inertia('Battery/Edit', [
             'battery' => BatteryResource::make($battery),
         ]);
