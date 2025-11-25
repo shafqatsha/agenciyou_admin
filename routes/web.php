@@ -22,9 +22,10 @@ Route::get('/partners/{id}', function () {
 
 Route::get('login' , function() {
     return Inertia::render('auth/login');
-});
-Route::post('/login', [AuthController::class, 'login'])->name('login');
+})->name('login');
 
+Route::post('/login', [AuthController::class, 'login'])->name('login-store');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Route::middleware(['auth'])->group(function () {
 
 

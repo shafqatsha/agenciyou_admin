@@ -30,4 +30,13 @@ class LoginAction
 
         return $admin;
     }
+
+    public function logout($request): void
+    {
+        auth()->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+    }
 }
