@@ -1,6 +1,95 @@
 import AppLayout from '@/layouts/app-layout';
-import { Link } from '@inertiajs/react';
-export default function Partners() {
+import { Link, useForm } from '@inertiajs/react';
+import { toast } from 'sonner';
+
+interface Partner {
+    id: number;
+    name: string;
+    email: string;
+    avatar: string;
+    company: string;
+    payment_status: 'Active' | 'Inactive';
+    lastLogin: string;
+}
+ 
+
+function PartnerRow({ partner }: { partner: Partner }) {
+    const { put, processing } = useForm();
+
+    const updateStatus = () => {
+        put(`/payment/${partner.id}`, {
+            onSuccess: () => {
+                toast.success('User status updated successfully');
+            },
+            onError: () => {
+                toast.error('Failed to update user status');
+            }
+        });
+    };
+
+    return (
+        <tr className="bg-surface-light dark:bg-surface-dark dark:border-border-dark border-b hover:bg-gray-50 dark:hover:bg-gray-800/50">
+            <td className="w-4 p-4">
+                <div className="flex items-center">
+                    <input
+                        className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary focus:ring-2 focus:ring-primary dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary"
+                        id={`checkbox-table-${partner.id}`}
+                        type="checkbox"
+                    />
+                    <label className="sr-only" htmlFor={`checkbox-table-${partner.id}`}>
+                        checkbox
+                    </label>
+                </div>
+            </td>
+            <th className="text-text-main flex items-center px-6 py-4 whitespace-nowrap dark:text-white" scope="row">
+                <img
+                    className="h-10 w-10 rounded-full"
+                    alt={`User avatar for ${partner.name}`}
+                    src={partner.avatar}
+                />
+                <div className="pl-3">
+                    <div className="text-base font-semibold">{partner.name}</div>
+                    <div className="text-text-secondary font-normal">{partner.email}</div>
+                </div>
+            </th>
+            <td className="px-6 py-4">{partner.company}</td>
+            <td className="px-6 py-4">
+                <div className="flex items-center">
+                    {partner.status === 'Active' ? (
+                        <span className="bg-success/10 text-success inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium">
+                            <span className="bg-success inline-block size-1.5 rounded-full"></span>Active
+                        </span>
+                    ) : (
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-red-500/10 px-2.5 py-1 text-xs font-medium text-red-500">
+                            <span className="inline-block size-1.5 rounded-full bg-red-500"></span>Inactive
+                        </span>
+                    )}
+                </div>
+            </td>
+            <td className="px-6 py-4">{partner.lastLogin}</td>
+            <td className="px-6 py-4">
+                <div className="flex items-center gap-1">
+                    <Link href={`/partners/${partner.id}`} className="text-text-secondary p-2 transition-colors hover:text-primary" title="View Details">
+                        <span className="material-symbols-outlined">visibility</span>
+                    </Link>
+                    <button className="text-text-secondary p-2 transition-colors hover:text-red-500" title="Delete User">
+                        <span className="material-symbols-outlined">delete</span>
+                    </button>
+                    <button
+                        className="text-text-secondary p-2 transition-colors hover:text-primary disabled:opacity-50"
+                        title="Update Status"
+                        onClick={updateStatus}
+                        disabled={processing}
+                    >
+                        <span className="material-symbols-outlined">check</span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    );
+}
+
+export default function Partners({users:partners}: {users: Partner[]}) {
     return (
         <AppLayout>
             <div className="mx-auto max-w-7xl">
@@ -50,7 +139,7 @@ export default function Partners() {
                                                 id="checkbox-all"
                                                 type="checkbox"
                                             />
-                                            <label className="sr-only" for="checkbox-all">
+                                            <label className="sr-only" htmlFor="checkbox-all">
                                                 checkbox
                                             </label>
                                         </div>
@@ -73,165 +162,9 @@ export default function Partners() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr className="bg-surface-light dark:bg-surface-dark dark:border-border-dark border-b hover:bg-gray-50 dark:hover:bg-gray-800/50">
-                                    <td className="w-4 p-4">
-                                        <div className="flex items-center">
-                                            <input
-                                                className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary focus:ring-2 focus:ring-primary dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary"
-                                                id="checkbox-table-1"
-                                                type="checkbox"
-                                            />
-                                            <label className="sr-only" for="checkbox-table-1">
-                                                checkbox
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <th className="text-text-main flex items-center px-6 py-4 whitespace-nowrap dark:text-white" scope="row">
-                                        <img
-                                            className="h-10 w-10 rounded-full"
-                                            data-alt="User avatar for Olivia Green"
-                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWmIz0nsOYG7gxTg5oz9IwCIQOU9TpupAkEj79tcxIw2dKrsGCCaneIVoH9u2Go8Wq344upNLM2wYq64MloT79fE9_b0U_quFLqSXkN5MG-QYOxVk0tJ42Cy-PK54ynrZHby7T2JNStIZIUTUtrcl0vnVm_4XjF5v1hLbInWg-Yc52PYUldnDm6eCs_LFfqkaoebB2icCYwS8ZQqjxGuHevXYWfBQfPEUOMD9kB1lG2h0HwQ3cYJSbfI3suyY1RjlWHRdXKuuypiE"
-                                        />
-                                        <div className="pl-3">
-                                            <div className="text-base font-semibold">Olivia Green</div>
-                                            <div className="text-text-secondary font-normal">olivia.green@solarsolutions.be</div>
-                                        </div>
-                                    </th>
-                                    <td className="px-6 py-4">SolarSolutions BE</td>
-                                    <td className="px-6 py-4">
-                                        <div className="flex items-center">
-                                            <span className="bg-success/10 text-success inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium">
-                                                <span className="bg-success inline-block size-1.5 rounded-full"></span>Active
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td className="px-6 py-4">2024-05-20</td>
-                                    <td className="px-6 py-4">
-                                        <div className="flex items-center gap-1">
-                                            <Link href="/partners/1" className="text-text-secondary p-2 transition-colors hover:text-primary" title="View Details">
-                                                <span className="material-symbols-outlined">visibility</span>
-                                            </Link>
-                                            <button className="text-text-secondary p-2 transition-colors hover:text-red-500" title="Delete User">
-                                                <span className="material-symbols-outlined">delete</span>
-                                            </button>
-                                            <button
-                                                className="text-text-secondary p-2 transition-colors hover:text-primary"
-                                                title="Update Status"
-                                                onClick={() => {
-                                                    // TODO: Call API to update user status
-                                                }}
-                                            >
-                                                <span className="material-symbols-outlined">check</span>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr className="bg-surface-light dark:bg-surface-dark dark:border-border-dark border-b hover:bg-gray-50 dark:hover:bg-gray-800/50">
-                                    <td className="w-4 p-4">
-                                        <div className="flex items-center">
-                                            <input
-                                                className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary focus:ring-2 focus:ring-primary dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary"
-                                                id="checkbox-table-3"
-                                                type="checkbox"
-                                            />
-                                            <label className="sr-only" for="checkbox-table-3">
-                                                checkbox
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <th className="text-text-main flex items-center px-6 py-4 whitespace-nowrap dark:text-white" scope="row">
-                                        <img
-                                            className="h-10 w-10 rounded-full"
-                                            data-alt="User avatar for Chloe Davis"
-                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkQYiBM4YkAQ0hUBExEMBkj4WsU1U_di1UPawLtQMTh9q2wn52P8trEowo2w1o8z-bRkLx9mOJMTXI20isIJm5ezRNR_1OSX-rFr_oUNCIX2xCGJjK8xQTtPlGwVW_MyDIdvTByzG4ob57cG-el3borPkj2Hn6vDdzKlp2DUw2T2gt-fhwX9i9JP1er3oTaJU6uJJKE9Ald09XJOcO1o0wNPaGVvsiP1AOLDcAljVv0nl_Ck3aqYr3kreDXSgZiOE_ZGvIeeweQS8"
-                                        />
-                                        <div className="pl-3">
-                                            <div className="text-base font-semibold">Chloe Davis</div>
-                                            <div className="text-text-secondary font-normal">chloe.davis@sunpower.be</div>
-                                        </div>
-                                    </th>
-                                    <td className="px-6 py-4">SunPower BE</td>
-                                    <td className="px-6 py-4">
-                                        <div className="flex items-center">
-                                            <span className="inline-flex items-center gap-1.5 rounded-full bg-red-500/10 px-2.5 py-1 text-xs font-medium text-red-500">
-                                                <span className="inline-block size-1.5 rounded-full bg-red-500"></span>Inactive
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td className="px-6 py-4">2024-03-11</td>
-                                    <td className="px-6 py-4">
-                                        <div className="flex items-center gap-1">
-                                            <Link href="/partners/1" className="text-text-secondary p-2 transition-colors hover:text-primary" title="View Details">
-                                                <span className="material-symbols-outlined">visibility</span>
-                                            </Link>
-                                            <button className="text-text-secondary p-2 transition-colors hover:text-red-500" title="Delete User">
-                                                <span className="material-symbols-outlined">delete</span>
-                                            </button>
-                                            <button
-                                                className="text-text-secondary p-2 transition-colors hover:text-primary"
-                                                title="Update Status"
-                                                onClick={() => {
-                                                    // TODO: Call API to update user status
-                                                }}
-                                            >
-                                                <span className="material-symbols-outlined">check</span>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr className="bg-surface-light dark:bg-surface-dark dark:border-border-dark border-b hover:bg-gray-50 dark:hover:bg-gray-800/50">
-                                    <td className="w-4 p-4">
-                                        <div className="flex items-center">
-                                            <input
-                                                className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary focus:ring-2 focus:ring-primary dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary"
-                                                id="checkbox-table-4"
-                                                type="checkbox"
-                                            />
-                                            <label className="sr-only" for="checkbox-table-4">
-                                                checkbox
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <th className="text-text-main flex items-center px-6 py-4 whitespace-nowrap dark:text-white" scope="row">
-                                        <img
-                                            className="h-10 w-10 rounded-full"
-                                            data-alt="User avatar for Liam Jansen"
-                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpDP5wg_pqANUQSGCtafHm821piTiwXPUNBfN5Bp0Cqv2C3-3Q7BMbdiH2-DC2gnkCyO49fi66hVAqJcFXI6cg6Xrr0JAMa1AQqag3WBn3wTwAnlyeuH1zpDdgrX39v6AXs9RJ1XA_AArBnO2QHUvfD7HpFVNKwz3BdA-FOWW5C7QDhwQFnR7_Mj3Iu-Ps2sIrvS1WaWUpq2cL4htG1MhbZT305PnYuNQ0aHSZSNwdDjxWkWCbLY7jZkGRLfACb33ihxaPjiuINvo"
-                                        />
-                                        <div className="pl-3">
-                                            <div className="text-base font-semibold">Liam Jansen</div>
-                                            <div className="text-text-secondary font-normal">liam.jansen@dutchsolar.nl</div>
-                                        </div>
-                                    </th>
-                                    <td className="px-6 py-4">DutchSolar NL</td>
-                                    <td className="px-6 py-4">
-                                        <div className="flex items-center">
-                                            <span className="bg-success/10 text-success inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium">
-                                                <span className="bg-success inline-block size-1.5 rounded-full"></span>Active
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td className="px-6 py-4">2024-05-21</td>
-                                    <td className="px-6 py-4">
-                                        <div className="flex items-center gap-1">
-                                            <Link href="/partners/1" className="text-text-secondary p-2 transition-colors hover:text-primary" title="View Details">
-                                                <span className="material-symbols-outlined">visibility</span>
-                                            </Link>
-                                            <button className="text-text-secondary p-2 transition-colors hover:text-red-500" title="Delete User">
-                                                <span className="material-symbols-outlined">delete</span>
-                                            </button>
-                                            <button
-                                                className="text-text-secondary p-2 transition-colors hover:text-primary"
-                                                title="Update Status"
-                                                onClick={() => {
-                                                    // TODO: Call API to update user status
-                                                }}
-                                            >
-                                                <span className="material-symbols-outlined">check</span>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                {partners?.data?.map(partner => (
+                                    <PartnerRow key={partner.id} partner={partner} />
+                                ))}
                             </tbody>
                         </table>
                     </div>
