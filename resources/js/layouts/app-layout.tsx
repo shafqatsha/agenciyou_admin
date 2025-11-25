@@ -64,7 +64,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
                                 Admin Panel
                             </h1>
                             <p className="text-sm text-gray-500 dark:text-gray-400">
-                                Battery Co.
+                                AgenciYou
                             </p>
                         </div>
                     </div>
@@ -82,7 +82,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
                         </Link>
 
                         <Link
-                            href="/batteries"
+                            href="/batteries/index"
                             className={navLinkClass(
                                 url.startsWith('/batteries')
                             )}
@@ -105,7 +105,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
                             Partners
                         </Link>
 
-                        <Link
+                        {/* <Link
                             href="/analytics"
                             className={navLinkClass(
                                 url.startsWith('/analytics')
@@ -127,7 +127,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
                                 assessment
                             </span>
                             Reports
-                        </Link>
+                        </Link> */}
                     </nav>
                 </div>
 
