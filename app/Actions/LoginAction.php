@@ -34,9 +34,7 @@ class LoginAction
     public function logout($request): void
     {
         auth()->logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
     }
 }
