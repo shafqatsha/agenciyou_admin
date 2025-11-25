@@ -20,7 +20,7 @@ class UserController extends Controller
     {
         $page = $request['page'];
         $users = $this->userQuery->getAll($page);
-        return inertia('User/Index', [
+        return inertia('partners', [
             'users' => UserResource::collection($users),
         ]);
     }   
