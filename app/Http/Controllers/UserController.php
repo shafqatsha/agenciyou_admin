@@ -16,9 +16,10 @@ class UserController extends Controller
         $this->userQuery = $userQuery;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $users = $this->userQuery->getAll();
+        $page = $request['page'];
+        $users = $this->userQuery->getAll($page);
         return inertia('User/Index', [
             'users' => UserResource::collection($users),
         ]);

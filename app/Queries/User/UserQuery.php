@@ -6,8 +6,8 @@ use App\Models\User;
 
 class UserQuery
 {
-    public function getAll()
+    public function getAll($page)
     {
-        return User::get();
+        return User::paginate(perPage: 10, page: $page);
     }   
 }
