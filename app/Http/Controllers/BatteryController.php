@@ -28,7 +28,7 @@ class BatteryController extends Controller
     {
         $batteries = $this->batteryQuery->getAll();
         
-        return inertia('Battery/Index', [
+        return inertia('batteries/index', [
             'batteries' => BatteryResource::collection($batteries),
         ]);
     }

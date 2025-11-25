@@ -82,7 +82,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
                         </Link>
 
                         <Link
-                            href="/batteries/index"
+                            href="/batteries"
                             className={navLinkClass(
                                 url.startsWith('/batteries')
                             )}

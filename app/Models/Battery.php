@@ -6,10 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Battery extends Model implements HasMedia
+class Battery extends Model
 {
-
-    use InteractsWithMedia;
 
     protected $guarded = ['id'];
 
@@ -21,10 +19,4 @@ class Battery extends Model implements HasMedia
         'ems_features' => 'array',
         'materials' => 'array',
     ];
-    protected $with = ['media'];
-
-    public function registerMediaCollections(): void
-    {
-        $this->addMediaCollection('image')->singleFile();
-    }
 }
